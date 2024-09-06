@@ -71,11 +71,15 @@ public class Soundex {
 
     private static char updateSoundex(StringBuilder soundex, char currentCode, char prevCode, boolean isVowels) {
 		// Append the code only if it differs from the previous code and is not '0'
-			if ((currentCode != '0' && currentCode != prevCode) || isVowels) {
+			if (validateCurrentCode(currentCode, prevCode) || isVowels) {
 				soundex.append(currentCode);
 				prevCode = currentCode;
 			}
 			return prevCode;
+	}
+
+	private static boolean validateCurrentCode(char currentCode, char prevCode) {
+	    return (currentCode != '0' && currentCode != prevCode);
 	}
 	
 	private static void checkAndAddPadding(StringBuilder soundex) {
