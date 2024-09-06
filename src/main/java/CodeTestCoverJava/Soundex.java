@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Soundex {
 	
-	Map<Character, Character> soundexCodes = new HashMap<>();
+	static Map<Character, Character> soundexCodes = new HashMap<>();
 	
 	public Soundex() {
 		initSoundexCodes();
@@ -37,30 +37,41 @@ public class Soundex {
         }
 
         StringBuilder soundex = new StringBuilder();
-        updateSoundex(soundex);
+		appendInitialCharacter(soundex, name);
+        processRemainingCharacters(soundex, name);
+		checkAndAddPadding(soundex);
 
         return soundex.toString();
     }
 	
-	private void updateSoundex(StringBuilder soundex) {
-		
-		soundex.append(Character.toUpperCase(name.charAt(0)));
-        char prevCode = getSoundexCode(name.charAt(0));
+	// Handles appending the first character of the name
+	private static void appendInitialCharacter(StringBuilder soundex, String name) {
+		char firstChar = name.charAt(0);
+		soundex.append(Character.toUpperCase(firstChar));
+	}
+	
+	// Processes and appends the remaining characters based on Soundex encoding
+	private static void processRemainingCharacters(StringBuilder soundex, String name) {
+		char prevCode = getSoundexCode(name.charAt(0));
+    
+		for (int i = 1; i < name.length() && soundex.length() < 4; i++) {
+			char currentChar = name.charAt(i);
+			char currentCode = getSoundexCode(currentChar);
 
-        for (int i = 1; i < name.length() && soundex.length() < 4; i++) {
-            char code = getSoundexCode(name.charAt(i));
-            if (code != '0' && code != prevCode) {
-                soundex.append(code);
-                prevCode = code;
-            }
-        }
-
-        while (soundex.length() < 4) {
-            soundex.append('0');
-        }
-		
+			// Append the code only if it differs from the previous code and is not '0'
+			if (currentCode != '0' && currentCode != prevCode) {
+				soundex.append(currentCode);
+				prevCode = currentCode;
+			}
+		}
 	}
 
+	private static void checkAndAddPadding(StringBuilder soundex) {
+		while (soundex.length() < 4) {
+            soundex.append('0');
+        }
+	}
+	
     private static char getSoundexCode(char c) {
         c = Character.toUpperCase(c);
         return soundexCodes.getOrDefault(c, '0');
