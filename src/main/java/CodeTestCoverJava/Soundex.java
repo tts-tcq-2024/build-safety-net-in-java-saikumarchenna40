@@ -6,11 +6,7 @@ public class Soundex {
 	
 	static Map<Character, Character> soundexCodes = new HashMap<>();
 	
-	public Soundex() {
-		initSoundexCodes();
-	}
-
-	private void initSoundexCodes() {
+	private static void initSoundexCodes() {
 		soundexCodes.put('B', '1');
 		soundexCodes.put('F', '1');
 		soundexCodes.put('P', '1');
@@ -35,7 +31,7 @@ public class Soundex {
         if (name == null || name.isEmpty()) {
             return "";
         }
-
+	initSoundexCodes();
         StringBuilder soundex = new StringBuilder();
 		appendInitialCharacter(soundex, name);
         processRemainingCharacters(soundex, name);
