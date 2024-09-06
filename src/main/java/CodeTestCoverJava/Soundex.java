@@ -53,9 +53,13 @@ public class Soundex {
 	// Processes and appends the remaining characters based on Soundex encoding
 	private static void processRemainingCharacters(StringBuilder soundex, String name) {
 		char prevCode = getSoundexCode(name.charAt(0));
-		char currentCode = getSoundexCode(currentChar);
+		 for (int i = 1; i < name.length() && soundex.length() < 4; i++) {
+			char currentChar = name.charAt(i);
+			char currentCode = getSoundexCode(currentChar);
+			updateSoundex(soundex, currentCode, prevCode);
+		 }
 
-		updateSoundex(soundex, currentCode, prevCode);
+		
 	}
 
     private static void updateSoundex(StringBuilder soundex, char currentCode, char prevCode) {
