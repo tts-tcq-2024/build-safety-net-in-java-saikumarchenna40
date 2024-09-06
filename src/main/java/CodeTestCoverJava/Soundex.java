@@ -71,7 +71,7 @@ public class Soundex {
 
     private static char updateSoundex(StringBuilder soundex, char currentCode, char prevCode, boolean isVowels) {
 		// Append the code only if it differs from the previous code and is not '0'
-			if (currentCode != '0' && currentCode != prevCode || isVowels) {
+			if ((currentCode != '0' && currentCode != prevCode) || isVowels) {
 				soundex.append(currentCode);
 				prevCode = currentCode;
 			}
