@@ -58,7 +58,7 @@ public class Soundex {
 		updateSoundex(soundex, currentCode, prevCode);
 	}
 
-    private static void updateSoundex(StringBuilder soundex, char currentChar, char prevCode) {
+    private static void updateSoundex(StringBuilder soundex, char currentCode, char prevCode) {
 		// Append the code only if it differs from the previous code and is not '0'
 			if (currentCode != '0' && currentCode != prevCode) {
 				soundex.append(currentCode);
