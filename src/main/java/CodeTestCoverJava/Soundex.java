@@ -53,19 +53,19 @@ public class Soundex {
 	// Processes and appends the remaining characters based on Soundex encoding
 	private static void processRemainingCharacters(StringBuilder soundex, String name) {
 		char prevCode = getSoundexCode(name.charAt(0));
-    
-		for (int i = 1; i < name.length() && soundex.length() < 4; i++) {
-			char currentChar = name.charAt(i);
-			char currentCode = getSoundexCode(currentChar);
+		char currentCode = getSoundexCode(currentChar);
 
-			// Append the code only if it differs from the previous code and is not '0'
+		updateSoundex(soundex, currentCode, prevCode);
+	}
+
+    private static void updateSoundex(StringBuilder soundex, char currentChar, char prevCode) {
+		// Append the code only if it differs from the previous code and is not '0'
 			if (currentCode != '0' && currentCode != prevCode) {
 				soundex.append(currentCode);
 				prevCode = currentCode;
 			}
-		}
 	}
-
+	
 	private static void checkAndAddPadding(StringBuilder soundex) {
 		while (soundex.length() < 4) {
             soundex.append('0');
