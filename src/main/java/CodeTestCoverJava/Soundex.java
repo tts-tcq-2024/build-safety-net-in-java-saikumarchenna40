@@ -42,7 +42,7 @@ public class Soundex {
             case 'R':
                 return '6';
             default:
-                return '0'; // For A, E, I, O, U, H, W, Y
+                return '0'; // For A, E, I, O, U, H, W, Y,z
         }
     }
 }
