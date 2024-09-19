@@ -1,0 +1,10 @@
+Sl No.,Feature,Scenario,Test Data,Expected Result
+TC_001,Soundex with commn names,To ensure name to be encoded according to the soundex algorithm,Chenna,C500
+,,To ensure name to be encoded according to the soundex algorithm,Bosch,B200
+TC_002,Soundex with Special Characters,To ensure special charcter to be encoded according to the soundex algorithm,Sne$@a,S500
+,,To ensure special charcter to be encoded according to the soundex algorithm,@Goo&le,G400
+TC_003,Soundex with edge cases,To ensure edge cases to be encoded according to the soundex algorithm,AEIOU,A000
+,,To ensure edge cases to be encoded according to the soundex algorithm,LOVE,L100
+TC_004,Soundex with Long names,To ensure name to be encoded according to the soundex algorithm,ChennaSaikumar,C522
+TC_005,Soundex with null,To ensure null value to be encoded according to the soundex algorithm,null,""""""
+TC_006,Soundex with empty string,To ensure empty string to be encoded according to the soundex algorithm,"""""",s500
